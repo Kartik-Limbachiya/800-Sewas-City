@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://800sewascity.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow important pages
+Allow: /
+Allow: /booking
+Allow: /dashboard
+Allow: /about
+Allow: /housing
+Allow: /employment
+Allow: /partners
+
+# Block common bot traps
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /cgi-bin/
