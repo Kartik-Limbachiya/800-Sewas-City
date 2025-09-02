@@ -1,0 +1,491 @@
+State	District
+Karnataka	Bagalkot
+Karnataka	Ballari
+Karnataka	Bangalore Rural
+Karnataka	Bangalore Urban
+Karnataka	Belagavi
+Karnataka	Bidar
+Karnataka	Bijapur
+Karnataka	Chamarajanagar
+Karnataka	Chikkaballapur
+Karnataka	Chikmagalur
+Karnataka	Chitradurga
+Karnataka	Dakshina Kannada
+Karnataka	Davanagere
+Karnataka	Dharwad
+Karnataka	Gadaga
+Karnataka	Hassan
+Karnataka	Haveri
+Karnataka	Kalaburagi
+Karnataka	Kodagu
+Karnataka	Kolar
+Karnataka	Koppal
+Karnataka	Mandya
+Karnataka	Mysore
+Karnataka	Raichur
+Karnataka	Ramanagara
+Karnataka	Shimoga
+Karnataka	Tumakuru
+Karnataka	Udupi
+Karnataka	Uttara Kannada
+Karnataka	Vijayanagara
+Karnataka	Yadgir
+Kerala	Alappuzha
+Kerala	Ernakulam
+Kerala	Idukki
+Kerala	Kannur
+Kerala	Kasaragod
+Kerala	Kollam
+Kerala	Kottayam
+Kerala	Kozhikode
+Kerala	Malappuram
+Kerala	Palakkad
+Kerala	Pathanamthitta
+Kerala	Thiruvananthapuram
+Kerala	Thrissur
+Kerala	Wayanad
+Madhya Pradesh	Agar Malwa
+Madhya Pradesh	Alirajpur
+Madhya Pradesh	Anuppur
+Madhya Pradesh	Ashoknagar
+Madhya Pradesh	Balaghat
+Madhya Pradesh	Barwani
+Madhya Pradesh	Betul
+Madhya Pradesh	Bhind
+Madhya Pradesh	Bhopal
+Madhya Pradesh	Burhanpur
+Madhya Pradesh	Chhatarpur
+Madhya Pradesh	Chhindwara
+Madhya Pradesh	Damoh
+Madhya Pradesh	Datia
+Madhya Pradesh	Dewas
+Madhya Pradesh	Dhar
+Madhya Pradesh	Dindori
+Madhya Pradesh	Guna
+Madhya Pradesh	Gwalior
+Madhya Pradesh	Harda
+Madhya Pradesh	Hoshangabad
+Madhya Pradesh	Indore
+Madhya Pradesh	Jabalpur
+Madhya Pradesh	Jhabua
+Madhya Pradesh	Katni
+Madhya Pradesh	Khandwa
+Madhya Pradesh	Khargone
+Madhya Pradesh	Maihar
+Madhya Pradesh	Mandla
+Madhya Pradesh	Mandsaur
+Madhya Pradesh	Mauganj
+Madhya Pradesh	Morena
+Madhya Pradesh	Narsinghpur
+Madhya Pradesh	Neemuch
+Madhya Pradesh	Niwari
+Madhya Pradesh	Pandhurna
+Madhya Pradesh	Panna
+Madhya Pradesh	Raisen
+Madhya Pradesh	Rajgarh
+Madhya Pradesh	Ratlam
+Madhya Pradesh	Rewa
+Madhya Pradesh	Sagar
+Madhya Pradesh	Satna
+Madhya Pradesh	Sehore
+Madhya Pradesh	Seoni
+Madhya Pradesh	Shahdol
+Madhya Pradesh	Shajapur
+Madhya Pradesh	Sheopur
+Madhya Pradesh	Shivpuri
+Madhya Pradesh	Sidhi
+Madhya Pradesh	Singrauli
+Madhya Pradesh	Tikamgarh
+Madhya Pradesh	Ujjain
+Madhya Pradesh	Umaria
+Madhya Pradesh	Vidisha
+Maharashtra	Ahmednagar
+Maharashtra	Akola
+Maharashtra	Amravati
+Maharashtra	Aurangabad
+Maharashtra	Beed
+Maharashtra	Bhandara
+Maharashtra	Buldhana
+Maharashtra	Chandrapur
+Maharashtra	Dhule
+Maharashtra	Gadchiroli
+Maharashtra	Gondia
+Maharashtra	Hingoli
+Maharashtra	Jalgaon
+Maharashtra	Jalna
+Maharashtra	Kolhapur
+Maharashtra	Latur
+Maharashtra	Mumbai City
+Maharashtra	Mumbai Suburban
+Maharashtra	Nagpur
+Maharashtra	Nanded
+Maharashtra	Nandurbar
+Maharashtra	Nashik
+Maharashtra	Osmanabad
+Maharashtra	Palghar
+Maharashtra	Parbhani
+Maharashtra	Pune
+Maharashtra	Raigad
+Maharashtra	Ratnagiri
+Maharashtra	Sangli
+Maharashtra	Satara
+Maharashtra	Sindhudurg
+Maharashtra	Solapur
+Maharashtra	Thane
+Maharashtra	Wardha
+Maharashtra	Washim
+Maharashtra	Yavatmal
+Manipur	Bishnupur
+Manipur	Chandel
+Manipur	Churachandpur
+Manipur	Imphal East
+Manipur	Imphal West
+Manipur	Jiribam
+Manipur	Kakching
+Manipur	Kamjong
+Manipur	Kangpokpi
+Manipur	Noney
+Manipur	Pherzawl
+Manipur	Senapati
+Manipur	Tamenglong
+Manipur	Tengnoupal
+Manipur	Thoubal
+Manipur	Ukhrul
+Meghalaya	East Garo Hills
+Meghalaya	East Jaintia Hills
+Meghalaya	East Khasi Hills
+Meghalaya	Eastern West Khasi Hills
+Meghalaya	North Garo Hills
+Meghalaya	Ri Bhoi
+Meghalaya	South Garo Hills
+Meghalaya	South West Garo Hills
+Meghalaya	South West Khasi Hills
+Meghalaya	West Garo Hills
+Meghalaya	West Jaintia Hills
+Meghalaya	West Khasi Hills
+Mizoram	Aizawl
+Mizoram	Champhai
+Mizoram	Hnahthial
+Mizoram	Khawzawl
+Mizoram	Kolasib
+Mizoram	Lawngtlai
+Mizoram	Lunglei
+Mizoram	Mamit
+Mizoram	Saiha
+Mizoram	Saitual
+Mizoram	Serchhip
+Nagaland	Chümoukedima
+Nagaland	Dimapur
+Nagaland	Kiphire
+Nagaland	Kohima
+Nagaland	Longleng
+Nagaland	Mokokchung
+Nagaland	Mon
+Nagaland	Niuland
+Nagaland	Noklak
+Nagaland	Peren
+Nagaland	Phek
+Nagaland	Shamator
+Nagaland	Tseminyü
+Nagaland	Tuensang
+Nagaland	Wokha
+Nagaland	Zunheboto
+Odisha	Angul
+Odisha	Balangir
+Odisha	Balasore
+Odisha	Bargarh
+Odisha	Bhadrak
+Odisha	Boudh
+Odisha	Cuttack
+Odisha	Debagarh
+Odisha	Dhenkanal
+Odisha	Gajapati
+Odisha	Ganjam
+Odisha	Jagatsinghpur
+Odisha	Jajpur
+Odisha	Jharsuguda
+Odisha	Kalahandi
+Odisha	Kandhamal
+Odisha	Kendrapara
+Odisha	Kendujhar
+Odisha	Khordha
+Odisha	Koraput
+Odisha	Malkangiri
+Odisha	Mayurbhanj
+Odisha	Nabarangpur
+Odisha	Nayagarh
+Odisha	Nuapada
+Odisha	Puri
+Odisha	Rayagada
+Odisha	Sambalpur
+Odisha	Subarnapur
+Odisha	Sundargarh
+Punjab	Amritsar
+Punjab	Barnala
+Punjab	Bathinda
+Punjab	Faridkot
+Punjab	Fatehgarh Sahib
+Punjab	Fazilka
+Punjab	Firozpur
+Punjab	Gurdaspur
+Punjab	Hoshiarpur
+Punjab	Jalandhar
+Punjab	Kapurthala
+Punjab	Ludhiana
+Punjab	Malerkotla
+Punjab	Mansa
+Punjab	Moga
+Punjab	Pathankot
+Punjab	Patiala
+Punjab	Rupnagar
+Punjab	Sahibzada Ajit Singh Nagar
+Punjab	Sangrur
+Punjab	Shahid Bhagat Singh Nagar
+Punjab	Sri Muktsar Sahib
+Punjab	Tarn Taran
+Rajasthan	Ajmer
+Rajasthan	Alwar
+Rajasthan	Anupgarh
+Rajasthan	Balotra
+Rajasthan	Banswara
+Rajasthan	Baran
+Rajasthan	Barmer
+Rajasthan	Beawar
+Rajasthan	Bharatpur
+Rajasthan	Bhilwara
+Rajasthan	Bikaner
+Rajasthan	Bundi
+Rajasthan	Chittorgarh
+Rajasthan	Churu
+Rajasthan	Dausa
+Rajasthan	Deeg
+Rajasthan	Dholpur
+Rajasthan	Didwana Kuchaman
+Rajasthan	Dudu
+Rajasthan	Dungarpur
+Rajasthan	Gangapur city
+Rajasthan	Hanumangarh
+Rajasthan	Jaipur
+Rajasthan	Jaipur Gramin
+Rajasthan	Jaisalmer
+Rajasthan	Jalore
+Rajasthan	Jhalawar
+Rajasthan	Jhunjhunu
+Rajasthan	Jodhpur
+Rajasthan	Jodhpur Gramin
+Rajasthan	Karauli
+Rajasthan	Kekri
+Rajasthan	Khairthal-Tijara
+Rajasthan	Kota
+Rajasthan	Kotputli-Behror
+Rajasthan	Nagaur
+Rajasthan	Neem Ka Thana
+Rajasthan	Pali
+Rajasthan	Phalodi
+Rajasthan	Pratapgarh
+Rajasthan	Rajsamand
+Rajasthan	Salumbar
+Rajasthan	Sanchore
+Rajasthan	Sawai Madhopur
+Rajasthan	Shahpura
+Rajasthan	Sikar
+Rajasthan	Sirohi
+Rajasthan	Sri Ganganagar
+Rajasthan	Tonk
+Rajasthan	Udaipur
+Sikkim	Gangtok
+Sikkim	Gyalshing
+Sikkim	Mangan
+Sikkim	Namchi
+Sikkim	Pakyong
+Sikkim	Soreng
+Tamil Nadu	Ariyalur
+Tamil Nadu	Chengalpattu
+Tamil Nadu	Chennai
+Tamil Nadu	Coimbatore
+Tamil Nadu	Cuddalore
+Tamil Nadu	Dharmapuri
+Tamil Nadu	Dindigul
+Tamil Nadu	Erode
+Tamil Nadu	Kallakurichi
+Tamil Nadu	Kanchipuram
+Tamil Nadu	Kanyakumari
+Tamil Nadu	Karur
+Tamil Nadu	Krishnagiri
+Tamil Nadu	Madurai
+Tamil Nadu	Mayiladuthurai
+Tamil Nadu	Nagapattinam
+Tamil Nadu	Namakkal
+Tamil Nadu	Nilgiris
+Tamil Nadu	Perambalur
+Tamil Nadu	Pudukkottai
+Tamil Nadu	Ramanathapuram
+Tamil Nadu	Ranipet
+Tamil Nadu	Salem
+Tamil Nadu	Sivaganga
+Tamil Nadu	Tenkasi
+Tamil Nadu	Thanjavur
+Tamil Nadu	Theni
+Tamil Nadu	Thoothukudi
+Tamil Nadu	Tiruchirappalli
+Tamil Nadu	Tirunelveli
+Tamil Nadu	Tirupattur
+Tamil Nadu	Tiruppur
+Tamil Nadu	Tiruvallur
+Tamil Nadu	Tiruvannamalai
+Tamil Nadu	Tiruvarur
+Tamil Nadu	Vellore
+Tamil Nadu	Viluppuram
+Tamil Nadu	Virudhunagar
+Telangana	Adilabad
+Telangana	Bhadradri Kothagudem
+Telangana	Hanamkonda
+Telangana	Hyderabad
+Telangana	Jagtial
+Telangana	Jangaon
+Telangana	Jayashankar Bhupalpally
+Telangana	Jogulamba Gadwal
+Telangana	Kamareddy
+Telangana	Karimnagar
+Telangana	Khammam
+Telangana	Kumuram Bheem Asifabad
+Telangana	Mahabubabad
+Telangana	Mahbubnagar
+Telangana	Mancherial
+Telangana	Medak
+Telangana	Medchal–Malkajgiri
+Telangana	Mulugu
+Telangana	Nagarkurnool
+Telangana	Nalgonda
+Telangana	Narayanpet
+Telangana	Nirmal
+Telangana	Nizamabad
+Telangana	Peddapalli
+Telangana	Rajanna Sircilla
+Telangana	Ranga Reddy
+Telangana	Sangareddy
+Telangana	Siddipet
+Telangana	Suryapet
+Telangana	Vikarabad
+Telangana	Wanaparthy
+Telangana	Warangal
+Telangana	Yadadri Bhuvanagiri
+Tripura	Dhalai
+Tripura	Gomati
+Tripura	Khowai
+Tripura	North Tripura
+Tripura	Sepahijala
+Tripura	South Tripura
+Tripura	Unakoti
+Tripura	West Tripura
+Uttar Pradesh	Agra
+Uttar Pradesh	Aligarh
+Uttar Pradesh	Ambedkar Nagar
+Uttar Pradesh	Amethi
+Uttar Pradesh	Amroha
+Uttar Pradesh	Auraiya
+Uttar Pradesh	Ayodhya
+Uttar Pradesh	Azamgarh
+Uttar Pradesh	Bagpat
+Uttar Pradesh	Bahraich
+Uttar Pradesh	Ballia
+Uttar Pradesh	Balrampur
+Uttar Pradesh	Banda
+Uttar Pradesh	Barabanki
+Uttar Pradesh	Bareilly
+Uttar Pradesh	Basti
+Uttar Pradesh	Bhadohi
+Uttar Pradesh	Bijnor
+Uttar Pradesh	Budaun
+Uttar Pradesh	Bulandshahr
+Uttar Pradesh	Chandauli
+Uttar Pradesh	Chitrakoot
+Uttar Pradesh	Deoria
+Uttar Pradesh	Etah
+Uttar Pradesh	Etawah
+Uttar Pradesh	Farrukhabad
+Uttar Pradesh	Fatehpur
+Uttar Pradesh	Firozabad
+Uttar Pradesh	Gautam BuddhaNagar
+Uttar Pradesh	Ghaziabad
+Uttar Pradesh	Ghazipur
+Uttar Pradesh	Gonda
+Uttar Pradesh	Gorakhpur
+Uttar Pradesh	Hamirpur
+Uttar Pradesh	Hapur
+Uttar Pradesh	Hardoi
+Uttar Pradesh	Hathras
+Uttar Pradesh	Jalaun
+Uttar Pradesh	Jaunpur
+Uttar Pradesh	Jhansi
+Uttar Pradesh	Kannauj
+Uttar Pradesh	Kanpur Dehat
+Uttar Pradesh	Kanpur Nagar
+Uttar Pradesh	Kasganj
+Uttar Pradesh	Kaushambi
+Uttar Pradesh	Kushinagar
+Uttar Pradesh	Lakhimpur Kheri
+Uttar Pradesh	Lalitpur
+Uttar Pradesh	Lucknow
+Uttar Pradesh	Maharajganj
+Uttar Pradesh	Mahoba
+Uttar Pradesh	Mainpuri
+Uttar Pradesh	Mathura
+Uttar Pradesh	Mau
+Uttar Pradesh	Meerut
+Uttar Pradesh	Mirzapur
+Uttar Pradesh	Moradabad
+Uttar Pradesh	Muzaffarnagar
+Uttar Pradesh	Pilibhit
+Uttar Pradesh	Pratapgarh
+Uttar Pradesh	Prayagraj
+Uttar Pradesh	Raebareli
+Uttar Pradesh	Rampur
+Uttar Pradesh	Saharanpur
+Uttar Pradesh	Sambhal
+Uttar Pradesh	Sant Kabir Nagar
+Uttar Pradesh	Shahjahanpur
+Uttar Pradesh	Shamli
+Uttar Pradesh	Shravasti
+Uttar Pradesh	Siddharthnagar
+Uttar Pradesh	Sitapur
+Uttar Pradesh	Sonbhadra
+Uttar Pradesh	Sultanpur
+Uttar Pradesh	Unnao
+Uttar Pradesh	Varanasi
+Uttarakhand	Almora
+Uttarakhand	Bageshwar
+Uttarakhand	Chamoli
+Uttarakhand	Champawat
+Uttarakhand	Dehradun
+Uttarakhand	Haridwar
+Uttarakhand	Nainital
+Uttarakhand	Pauri Garhwal
+Uttarakhand	Pithoragarh
+Uttarakhand	Rudraprayag
+Uttarakhand	Tehri Garhwal
+Uttarakhand	Udham Singh Nagar
+Uttarakhand	Uttarkashi
+West Bengal	Alipurduar
+West Bengal	Bankura
+West Bengal	Birbhum
+West Bengal	Cooch Behar
+West Bengal	Dakshin Dinajpur
+West Bengal	Darjeeling
+West Bengal	Hooghly
+West Bengal	Howrah
+West Bengal	Jalpaiguri
+West Bengal	Jhargram
+West Bengal	Kalimpong
+West Bengal	Kolkata
+West Bengal	Maldah
+West Bengal	Murshidabad
+West Bengal	Nadia
+West Bengal	North Parganas
+West Bengal	Paschim Bardhaman
+West Bengal	Paschim Medinipur
+West Bengal	Purba Bardhaman
+West Bengal	Purba Medinipur
+West Bengal	Purulia
+West Bengal	South Parganas
+West Bengal	Uttar Dinajpur

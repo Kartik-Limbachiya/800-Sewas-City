@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Progress } from "@/components/ui/progress"
+import { PreferredCitySelect } from "@/components/preferred-city-select"
 import {
   ChevronLeft,
   ChevronRight,
@@ -551,13 +552,11 @@ export default function BookingForm() {
                     <Label htmlFor="preferredCity" className="text-sm sm:text-base">
                       Preferred City *
                     </Label>
-                    <Input
-                      id="preferredCity"
-                      type="text"
+                    <PreferredCitySelect
                       value={formData.preferredCity}
-                      onChange={(e) => handleInputChange("preferredCity", e.target.value)}
-                      placeholder="Enter your preferred city"
-                      className={`h-12 text-base ${validationErrors.preferredCity ? "border-red-500" : ""}`}
+                      onChange={(v) => handleInputChange("preferredCity", v)}
+                      placeholder="Type to search cities (e.g., Mumbai, Pune, Jaipur)…"
+                      className={`${validationErrors.preferredCity ? "border-red-500" : ""}`}
                     />
                     {validationErrors.preferredCity && (
                       <p className="text-red-500 text-sm flex items-center gap-1">
@@ -565,6 +564,10 @@ export default function BookingForm() {
                         {validationErrors.preferredCity}
                       </p>
                     )}
+                    <p className="text-xs text-gray-500">
+                      Tip: Try typing "Mumbai" to see Mumbai City and Mumbai Suburban. The value will be saved as "City
+                      — State".
+                    </p>
                   </div>
                 </div>
               </div>
