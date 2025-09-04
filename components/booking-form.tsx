@@ -207,16 +207,35 @@ export default function BookingForm() {
 
   setIsLoading(true);
   try {
-    // 1. Upload documents to S3
+    // 1. Create inquiry record in DynamoDB (without docs first)
+    const inquiryRes = await fetch("/api/inquiry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...formData,
+        documents: {}, // empty for now
+      }),
+    });
+
+    const inquiryResult = await inquiryRes.json();
+    if (!inquiryResult.success) throw new Error(inquiryResult.message);
+
+    const userId = inquiryResult.id; // DynamoDB UUID from backend
+
+    // 2. Upload documents to S3 using that UUID
     const uploadedDocs: Record<string, string> = {};
     for (const [key, file] of Object.entries(formData.documents)) {
       if (file) {
-        // Request pre-signed URL
         const presignRes = await fetch("/api/upload", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ fileName: file.name, fileType: file.type }),
+          body: JSON.stringify({
+            fileName: file.name,
+            fileType: file.type,
+            userId, // ✅ use DynamoDB id
+          }),
         });
+
         const { uploadUrl, key: s3Key } = await presignRes.json();
 
         // Upload directly to S3
@@ -226,47 +245,24 @@ export default function BookingForm() {
           body: file,
         });
 
-        uploadedDocs[key] = `s3://${process.env.NEXT_PUBLIC_S3_BUCKET}/` + s3Key;
+        uploadedDocs[key] = `https://${process.env.NEXT_PUBLIC_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/${s3Key}`;
       }
     }
 
-    // 2. Send inquiry data to backend
-    const payload = {
-      fullName: formData.fullName,
-      fatherName: formData.fatherName,
-      dateOfBirth: formData.dateOfBirth,
-      gender: formData.gender,
-      mobileNumber: formData.mobileNumber,
-      emailAddress: formData.emailAddress,
-      permanentAddress: formData.permanentAddress,
-      currentAddress: formData.currentAddress,
-      occupation: formData.occupation,
-      monthlyIncome: formData.monthlyIncome,
-      housingPreference: formData.housingPreference,
-      preferredCity: formData.preferredCity,
-      documents: uploadedDocs,
-      legalAcknowledgment: formData.legalAcknowledgment,
-      termsAgreement: formData.termsAgreement,
-      marketingConsent: formData.marketingConsent,
-    };
-
-    const res = await fetch("/api/inquiry", {
-      method: "POST",
+    // 3. Update DynamoDB record with document URLs
+    await fetch(`/api/inquiry/${userId}`, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ documents: uploadedDocs }),
     });
 
-    const result = await res.json();
-    if (result.success) {
-      localStorage.removeItem("sewas-application-draft");
-      toast({
-        title: "Application Submitted Successfully!",
-        description: "We’ll contact you within 24 hours with next steps.",
-      });
-      // TODO: navigate to success/dashboard page
-    } else {
-      throw new Error(result.message);
-    }
+    // ✅ Success
+    localStorage.removeItem("sewas-application-draft");
+    toast({
+      title: "Application Submitted Successfully!",
+      description: "We’ll contact you within 24 hours with next steps.",
+    });
+
   } catch (error) {
     console.error(error);
     toast({
@@ -278,6 +274,7 @@ export default function BookingForm() {
     setIsLoading(false);
   }
 };
+
 
   const steps = [
     { number: 1, title: "Personal Details", icon: User },

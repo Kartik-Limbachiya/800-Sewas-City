@@ -1,49 +1,69 @@
 import { NextResponse } from "next/server";
-import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, PutItemCommand, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
+import { v4 as uuidv4 } from "uuid";
 
-const dynamo = new DynamoDBClient({
-  region: process.env.AWS_REGION!,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-  },
-});
+const client = new DynamoDBClient({ region: process.env.AWS_REGION });
 
 export async function POST(req: Request) {
   try {
-    const data = await req.json();
+    const body = await req.json();
+    const id = uuidv4(); // generate UUID
 
-    const item = {
-      id: { S: crypto.randomUUID() },
-      createdAt: { S: new Date().toISOString() },
-      fullName: { S: data.fullName },
-      fatherName: { S: data.fatherName },
-      dateOfBirth: { S: data.dateOfBirth },
-      gender: { S: data.gender },
-      mobileNumber: { S: data.mobileNumber },
-      emailAddress: { S: data.emailAddress },
-      permanentAddress: { S: data.permanentAddress },
-      currentAddress: { S: data.currentAddress || "" },
-      occupation: { S: data.occupation },
-      monthlyIncome: { S: data.monthlyIncome },
-      housingPreference: { S: data.housingPreference },
-      preferredCity: { S: data.preferredCity },
-      documents: { S: JSON.stringify(data.documents) },
-      legalAcknowledgment: { BOOL: data.legalAcknowledgment },
-      termsAgreement: { BOOL: data.termsAgreement },
-      marketingConsent: { BOOL: data.marketingConsent },
-    };
+    const createdAt = new Date().toISOString();
 
-    await dynamo.send(
+    // Insert record (documents empty for now)
+    await client.send(
       new PutItemCommand({
         TableName: process.env.DYNAMODB_TABLE!,
-        Item: item,
+        Item: {
+          id: { S: id },
+          createdAt: { S: createdAt },
+          fullName: { S: body.fullName },
+          fatherName: { S: body.fatherName },
+          dateOfBirth: { S: body.dateOfBirth },
+          gender: { S: body.gender },
+          mobileNumber: { S: body.mobileNumber },
+          emailAddress: { S: body.emailAddress },
+          permanentAddress: { S: body.permanentAddress },
+          currentAddress: { S: body.currentAddress || "" },
+          occupation: { S: body.occupation },
+          monthlyIncome: { S: body.monthlyIncome },
+          housingPreference: { S: body.housingPreference },
+          preferredCity: { S: body.preferredCity },
+          documents: { M: {} }, // empty now, will update later
+          legalAcknowledgment: { BOOL: body.legalAcknowledgment },
+          termsAgreement: { BOOL: body.termsAgreement },
+          marketingConsent: { BOOL: body.marketingConsent },
+        },
+      })
+    );
+
+    return NextResponse.json({ success: true, id }); // ✅ send id back
+  } catch (error: any) {
+    console.error(error);
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
+  }
+}
+
+// Add this route for updating docs later
+export async function PUT(req: Request, { params }: { params: { id: string } }) {
+  try {
+    const body = await req.json();
+
+    await client.send(
+      new UpdateItemCommand({
+        TableName: process.env.DYNAMODB_TABLE!,
+        Key: { id: { S: params.id } },
+        UpdateExpression: "SET documents = :docs",
+        ExpressionAttributeValues: {
+          ":docs": { S: JSON.stringify(body.documents) },
+        },
       })
     );
 
     return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("DynamoDB save error:", error);
-    return NextResponse.json({ success: false, message: "DB save failed" }, { status: 500 });
+  } catch (error: any) {
+    console.error(error);
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
   }
 }
