@@ -202,31 +202,82 @@ export default function BookingForm() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!validateStep(5)) return
+  e.preventDefault();
+  if (!validateStep(5)) return;
 
-    setIsLoading(true)
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+  setIsLoading(true);
+  try {
+    // 1. Upload documents to S3
+    const uploadedDocs: Record<string, string> = {};
+    for (const [key, file] of Object.entries(formData.documents)) {
+      if (file) {
+        // Request pre-signed URL
+        const presignRes = await fetch("/api/upload", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fileName: file.name, fileType: file.type }),
+        });
+        const { uploadUrl, key: s3Key } = await presignRes.json();
 
-      localStorage.removeItem("sewas-application-draft")
+        // Upload directly to S3
+        await fetch(uploadUrl, {
+          method: "PUT",
+          headers: { "Content-Type": file.type },
+          body: file,
+        });
+
+        uploadedDocs[key] = `s3://${process.env.NEXT_PUBLIC_S3_BUCKET}/` + s3Key;
+      }
+    }
+
+    // 2. Send inquiry data to backend
+    const payload = {
+      fullName: formData.fullName,
+      fatherName: formData.fatherName,
+      dateOfBirth: formData.dateOfBirth,
+      gender: formData.gender,
+      mobileNumber: formData.mobileNumber,
+      emailAddress: formData.emailAddress,
+      permanentAddress: formData.permanentAddress,
+      currentAddress: formData.currentAddress,
+      occupation: formData.occupation,
+      monthlyIncome: formData.monthlyIncome,
+      housingPreference: formData.housingPreference,
+      preferredCity: formData.preferredCity,
+      documents: uploadedDocs,
+      legalAcknowledgment: formData.legalAcknowledgment,
+      termsAgreement: formData.termsAgreement,
+      marketingConsent: formData.marketingConsent,
+    };
+
+    const res = await fetch("/api/inquiry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await res.json();
+    if (result.success) {
+      localStorage.removeItem("sewas-application-draft");
       toast({
         title: "Application Submitted Successfully!",
-        description: "We'll contact you within 24 hours with next steps.",
-      })
-
-      // Redirect to success page or dashboard
-    } catch (error) {
-      toast({
-        title: "Submission Failed",
-        description: "Please try again or contact support.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsLoading(false)
+        description: "We’ll contact you within 24 hours with next steps.",
+      });
+      // TODO: navigate to success/dashboard page
+    } else {
+      throw new Error(result.message);
     }
+  } catch (error) {
+    console.error(error);
+    toast({
+      title: "Submission Failed",
+      description: "Please try again or contact support.",
+      variant: "destructive",
+    });
+  } finally {
+    setIsLoading(false);
   }
+};
 
   const steps = [
     { number: 1, title: "Personal Details", icon: User },
