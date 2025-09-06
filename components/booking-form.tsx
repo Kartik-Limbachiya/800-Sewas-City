@@ -207,6 +207,8 @@ export default function BookingForm() {
 
   setIsLoading(true);
   try {
+    console.log("🚀 Starting form submission...");
+
     // 1. Create inquiry record in DynamoDB (without docs first)
     const inquiryRes = await fetch("/api/inquiry", {
       method: "POST",
@@ -217,64 +219,134 @@ export default function BookingForm() {
       }),
     });
 
+    if (!inquiryRes.ok) {
+      const errorText = await inquiryRes.text();
+      throw new Error(`Failed to create inquiry: ${errorText}`);
+    }
+
     const inquiryResult = await inquiryRes.json();
     if (!inquiryResult.success) throw new Error(inquiryResult.message);
 
     const userId = inquiryResult.id; // DynamoDB UUID from backend
+    const createdAt = inquiryResult.createdAt; // Get createdAt from response
+
+    console.log("✅ Inquiry created:", { userId, createdAt });
 
     // 2. Upload documents to S3 using that UUID
     const uploadedDocs: Record<string, string> = {};
-    for (const [key, file] of Object.entries(formData.documents)) {
+    const documentEntries = Object.entries(formData.documents).filter(([_, file]) => file !== null);
+    
+    console.log(`📤 Starting upload of ${documentEntries.length} documents...`);
+
+    for (const [docType, file] of documentEntries) {
       if (file) {
-        const presignRes = await fetch("/api/upload", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            fileName: file.name,
-            fileType: file.type,
-            userId, // ✅ use DynamoDB id
-          }),
-        });
+        try {
+          console.log(`📤 Uploading ${docType}:`, file.name);
 
-        const { uploadUrl, key: s3Key } = await presignRes.json();
+          // Get presigned URL with proper error handling
+          const presignRes = await fetch("/api/upload", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              fileName: file.name,
+              fileType: file.type,
+              userId, // use DynamoDB id
+            }),
+          });
 
-        // Upload directly to S3
-        await fetch(uploadUrl, {
-          method: "PUT",
-          headers: { "Content-Type": file.type },
-          body: file,
-        });
+          if (!presignRes.ok) {
+            const errorResponse = await presignRes.json();
+            console.error(`❌ Failed to get upload URL for ${docType}:`, errorResponse);
+            throw new Error(`Failed to get upload URL for ${docType}: ${errorResponse.error || 'Unknown error'}`);
+          }
 
-        uploadedDocs[key] = `https://${process.env.NEXT_PUBLIC_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/${s3Key}`;
+          const { uploadUrl, key } = await presignRes.json();
+          
+          if (!uploadUrl || !key) {
+            throw new Error(`Invalid response from upload API for ${docType}`);
+          }
+
+          console.log(`🔗 Got upload URL for ${docType}:`, { key });
+
+          // Upload directly to S3
+          const uploadResponse = await fetch(uploadUrl, {
+            method: "PUT",
+            headers: { 
+              "Content-Type": file.type,
+            },
+            body: file,
+          });
+
+          if (!uploadResponse.ok) {
+            const uploadError = await uploadResponse.text();
+            console.error(`❌ S3 upload failed for ${docType}:`, uploadError);
+            throw new Error(`Failed to upload ${docType} to S3: ${uploadResponse.status} ${uploadResponse.statusText}`);
+          }
+
+          // Build the correct S3 URL
+          const region = process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1';
+          const bucket = process.env.NEXT_PUBLIC_S3_BUCKET;
+          const s3Url = `https://${bucket}.s3.${region}.amazonaws.com/${key}`;
+          uploadedDocs[docType] = s3Url;
+
+          console.log(`✅ Successfully uploaded ${docType}:`, s3Url);
+
+        } catch (docError) {
+          console.error(`❌ Error uploading ${docType}:`, docError);
+          throw new Error(`Failed to upload ${docType}. Please try again.`);
+        }
       }
     }
 
+    console.log("📋 All documents uploaded:", uploadedDocs);
+
     // 3. Update DynamoDB record with document URLs
-    await fetch(`/api/inquiry/${userId}`, {
+    console.log("📝 Updating DynamoDB with document URLs...");
+    
+    const updateRes = await fetch(`/api/inquiry/${userId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ documents: uploadedDocs }),
+      body: JSON.stringify({ 
+        documents: uploadedDocs,
+        createdAt: createdAt
+      }),
     });
 
-    // ✅ Success
+    if (!updateRes.ok) {
+      const updateError = await updateRes.text();
+      console.error("❌ Failed to update documents in DynamoDB:", updateError);
+      throw new Error("Failed to save document information to database");
+    }
+
+    const updateResult = await updateRes.json();
+    if (!updateResult.success) {
+      console.error("❌ DynamoDB update failed:", updateResult);
+      throw new Error("Failed to save document information");
+    }
+
+    console.log("✅ Form submission completed successfully!");
+
+    // Clear saved data and show success message
     localStorage.removeItem("sewas-application-draft");
     toast({
       title: "Application Submitted Successfully!",
-      description: "We’ll contact you within 24 hours with next steps.",
+      description: `Your application has been submitted with ${Object.keys(uploadedDocs).length} documents. We'll contact you within 24 hours.`,
     });
 
+    // Optional: Redirect to success page or reset form
+    // router.push('/success');
+
   } catch (error) {
-    console.error(error);
+    console.error("❌ Submission error:", error);
     toast({
       title: "Submission Failed",
-      description: "Please try again or contact support.",
+      description: error instanceof Error ? error.message : "An unexpected error occurred. Please try again or contact support.",
       variant: "destructive",
     });
   } finally {
     setIsLoading(false);
   }
 };
-
 
   const steps = [
     { number: 1, title: "Personal Details", icon: User },
